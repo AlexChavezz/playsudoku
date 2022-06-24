@@ -1,6 +1,6 @@
 import { createContext } from "react";
-import { GlobalState } from "../interfaces/interfaces";
+import { GlobalStateContext } from "../interfaces/interfaces";
 
 
 
-export const GlobalStateContext = createContext({} as GlobalState);
+export const GlobalState= createContext({} as GlobalStateContext);

@@ -1,5 +1,5 @@
-import {useEffect, useReducer} from 'react';
-import { GlobalStateContext } from './context/GlobalState';
+import { useEffect, useReducer } from 'react';
+import { GlobalState } from './context/GlobalState';
 import { gobalReducer } from './reducers/globalReducer';
 import { MainRouter } from "./router/MainRouter";
 
@@ -9,16 +9,17 @@ const initialState = {
 
 export default () => {
   useEffect(() => {
-    dispatch({type:"changeTheme", payload: "themeTwo"})
+    themeDispatch({type:"changeTheme", payload: "themeTwo"})
   }, [])
-  const [{ theme }, dispatch] = useReducer(gobalReducer, initialState);
-  console.log(theme)
+  const [{ theme }, themeDispatch] = useReducer(gobalReducer, initialState);
+  
   return (
-    <GlobalStateContext.Provider value={{
+    <GlobalState.Provider value={{
       theme,
+      themeDispatch,
     }}>
       <MainRouter />
-    </GlobalStateContext.Provider>
+    </GlobalState.Provider>
   );
 }
 

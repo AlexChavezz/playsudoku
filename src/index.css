@@ -8,6 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #eff0f3;
+
 }
 
 code {
@@ -26,7 +27,7 @@ h1 {
   font-size: 100px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin-top:200px;
+  margin-top: 200px;
 }
 
 main {
@@ -122,8 +123,9 @@ footer section article {
   /* align-items: ; */
 }
 
-.settings, .bookmarks {
-  color:#ff8e3c;
+.settings,
+.bookmarks {
+  color: #ff8e3c;
 }
 
 /*
@@ -179,9 +181,163 @@ footer section article {
   }
 }
 
+/*
 
+  ThemeOne
 
+*/
+
+.themeOne h1 {
+  color: #fffffe;
+}
+
+.themeOne {
+  background-color: #55423d;
+}
+
+.themeOne button {
+  background-color: #ffc0ad;
+}
+
+.themeOne button span {
+  color: #271c19;
+}
+
+.themeOne .bookmarks {
+  color: #e78fb3;
+}
+
+.themeOne .settings {
+  color: #e78fb3;
+}
+
+.themeOne .palette {
+  color: #e78fb3;
+}
+
+.themeOne p {
+  color: #fff3ec;
+}
+
+.themeOne span {
+  color: #fff3ec;
+}
+
+/*
+
+  ThemeTwo
+
+*/
+
+.themeTwo h1 {
+  color: #001858;
+}
 
 .themeTwo {
-  background-color:#fef6e4  ;
+  background-color: #fef6e4;
+}
+
+.themeTwo button {
+  background-color: #f582ae;
+}
+
+.themeTwo button span {
+  color: #001858;
+}
+
+.themeTwo .bookmarks,
+.settings,
+.palette {
+  color: #001858;
+}
+
+.themeTwo p,
+span {
+  color: #172c66;
+}
+
+
+
+/*
+
+  ThemeThree
+
+*/
+
+.themeThree h1 {
+  color: #272343;
+}
+
+.themeThree {
+  background-color: #fffffe;
+}
+
+.themeThree button {
+  background-color: #ffd803;
+}
+
+.themeThree button span {
+  color: #272343;
+}
+
+.themeThree .bookmarks {
+  color: #272343;
+}
+
+.themeThree .settings {
+  color: #272343;
+}
+
+.themeThree .palette {
+  color: #272343;
+}
+
+.themeThree p {
+  color: #2d334a;
+}
+
+.themeThree span {
+  color: #272343;
+}
+
+/*
+
+  ThemeFour
+
+*/
+
+.themeFour h1 {
+  color: #fffffe;
+}
+
+.themeFour {
+  background-color: #004643;
+}
+
+.themeFour button {
+  background-color: #f9bc60;
+}
+
+.themeFour button span {
+  color: #001e1d;
+}
+
+.themeFour .bookmarks {
+  color: #e16162;
+}
+
+.themeFour .settings {
+  color: #e16162;
+}
+
+.themeFour .palette {
+  color: #e16162;
+}
+
+.themeFour p {
+  color: #abd1c6;
+}
+
+.themeFour span {
+  color: #abd1c6;
 }
