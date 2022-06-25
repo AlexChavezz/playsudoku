@@ -1,9 +1,9 @@
 
-type value = "themeOne"| "themeTwo" | "themeThree" | "themeFour";
+export type values = "themeOne"| "themeTwo" | "themeThree" | "themeFour" | "themeFive";
 
 export type themeAction =
-| { type: "changeTheme", payload: value }
-| { type: "changeTheme", payload: value }
+| { type: "changeTheme", payload: values }
+| { type: "changeTheme", payload: values }
 
 export interface GlobalState {
   theme: string

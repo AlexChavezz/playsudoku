@@ -1,73 +1,42 @@
-import { createRef, useContext, useEffect, useRef, useState } from "react";
-import { Header, Body, Footer } from "../components/PlayScreen";
-import { ColorItem } from "../components/PlayScreen/ColorItem";
+import { useContext, useEffect, useRef, useState } from "react";
+import { Header, Body, Footer, ColorItem } from "../components/PlayScreen";
 import { GlobalState } from "../context/GlobalState";
+import { animationIn, animationOut } from "../helpers/animations";
+import { values } from "../interfaces/interfaces";
 
 
-const Themes = ["themeOne", "themeTwo", "themeThree", "themeFour"];
+const Themes: values[] = ["themeOne", "themeTwo", "themeThree", "themeFour", "themeFive"];
 
 export const PlayScreen = () => {
-    const { theme } = useContext(GlobalState);
+    const { theme, themeDispatch } = useContext(GlobalState);
     const [palette, setPalette] = useState<boolean>(false);
-    const ref = createRef();
     const colorRef = useRef<HTMLElement>(null);
-    useEffect(()=>{
-        if(palette){
-            colorRef.current?.animate([
-                { transform: "translateX(50px)" },
-                { visibility:"visible" },
-                { opcacity: 0 },
-                { transform: "translateX(0px)" },
-                { opcacity: 1 },
-            ], {
-                duration: 200
-            })
-            setTimeout(()=>{
-                colorRef.current.style.visibility = "visible";
-            }, 150)
+    console.log(theme)
+    useEffect(() => {
+        const themeSaved: string | null = window.localStorage.getItem("theme");
+        if(!themeSaved){
+            window.localStorage.setItem("theme", "themeOne");
         }else{
-            colorRef.current?.animate([
-                { transform: "translateX(0px)" },
-                { opcacity: 1 },
-                { transform: "translateX(50px)" },
-                { opcacity: 0 },
-            ], {
-                duration: 200
-            })
-            setTimeout(()=>{
-                colorRef.current.style.visibility = "hidden";
-            }, 150)
+            themeDispatch({ type: "changeTheme", payload: themeSaved });
+            localStorage.setItem("theme", theme);
         }
-    },[[palette]])
-    function showColors() {
-        if(!palette){
-            colorRef.current?.animate([
-                { transform: "translateX(50px)" },
-                { visibility:"visible" },
-                { opcacity: 0 },
-                { transform: "translateX(0px)" },
-                { opcacity: 1 },
-            ], {
-                duration: 200
-            })
-            setTimeout(()=>{
-                colorRef.current.style.visibility = "visible";
-            }, 150)
-        }else{
-            colorRef.current?.animate([
-                { transform: "translateX(0px)" },
-                { opcacity: 1 },
-                { transform: "translateX(50px)" },
-                { opcacity: 0 },
-            ], {
-                duration: 200
-            })
-            setTimeout(()=>{
-                colorRef.current.style.visibility = "hidden";
-            }, 150)
+
+        if (palette) {
+            animationIn(colorRef);
+        } else {
+            animationOut(colorRef);
+        }
+    }, [palette])
+
+    function showColors(): void {
+        if (!palette) {
+            animationIn(colorRef);
+        } else {
+            animationOut(colorRef);
         }
         setPalette(!palette);
     }
+
     return (
         <main className={theme}>
             <Header showColors={showColors} />
@@ -75,26 +44,11 @@ export const PlayScreen = () => {
             <Footer />
             <section
                 ref={colorRef}
-                style={{
-                    // backgroundColor: "lightblue",
-                    position: "absolute",
-                    width: "100px",
-                    height: "500px",
-                    top: 0,
-                    right: 20,
-                    bottom: 0,
-                    margin: "auto",
-                    borderRadius: 10,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "space-around",
-                    visibility: "hidden"
-                }}
+                className="color-palette-container"
             >
                 {
-                    Themes.map((theme: string) => {
-                        return <ColorItem theme={theme} key={theme} reference={ref} setPalette={setPalette}/>
+                    Themes.map((theme) => {
+                        return <ColorItem theme={theme} key={theme} setPalette={setPalette} />
                     })
                 }
             </section>

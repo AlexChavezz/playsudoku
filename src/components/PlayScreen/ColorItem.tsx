@@ -1,30 +1,24 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { GlobalState } from "../../context/GlobalState";
+import { values } from "../../interfaces/interfaces";
 
 interface ColorItemProps {
-    theme: string
-    setPalette:any
+    theme: values
+    setPalette: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const ColorItem = ({ theme, setPalette }:ColorItemProps) => {
+export const ColorItem = React.memo(({ theme, setPalette }:ColorItemProps) => {
     const { themeDispatch } = useContext(GlobalState);
     function changeColor(){
         themeDispatch({type:"changeTheme", payload: theme});
         setPalette(false);
+        window.localStorage.setItem("theme", "hola");
     }
     return (
         <article
             onClick={changeColor}
-            style={{
-                borderRadius: 50,
-                height: "35px",
-                width: "35px",
-                // boxShadow:"2px 2px 2px #ccc ins"
-                border: "2px solid #ccc"
-            }}
-            className={theme}
+            className={`color-palette-item ${theme}`}
         >
-
         </article>
     );
-}
+})
