@@ -1,8 +1,13 @@
-export const Header = () => {
+interface HeaderProps {
+    showColors: () => void
+}
+
+export const Header = ({ showColors }: HeaderProps) => {
     return (
         <header>
-            <span 
+            <span
                 className="material-symbols-outlined palette"
+                onClick={showColors}
             >
                 palette
             </span>
