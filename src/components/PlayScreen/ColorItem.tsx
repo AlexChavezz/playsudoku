@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { GlobalState } from "../../context/GlobalState";
+import { saveThemeONLocalS } from "../../helpers/saveAndUpdateThemes";
 import { values } from "../../interfaces/interfaces";
 
 interface ColorItemProps {
@@ -10,9 +11,9 @@ interface ColorItemProps {
 export const ColorItem = React.memo(({ theme, setPalette }:ColorItemProps) => {
     const { themeDispatch } = useContext(GlobalState);
     function changeColor(){
-        themeDispatch({type:"changeTheme", payload: theme});
         setPalette(false);
-        window.localStorage.setItem("theme", "hola");
+        saveThemeONLocalS(theme);
+        themeDispatch({type:"changeTheme", payload: theme});
     }
     return (
         <article

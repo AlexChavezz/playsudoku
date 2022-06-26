@@ -8,19 +8,10 @@ import { values } from "../interfaces/interfaces";
 const Themes: values[] = ["themeOne", "themeTwo", "themeThree", "themeFour", "themeFive"];
 
 export const PlayScreen = () => {
-    const { theme, themeDispatch } = useContext(GlobalState);
+    const { theme } = useContext(GlobalState);
     const [palette, setPalette] = useState<boolean>(false);
     const colorRef = useRef<HTMLElement>(null);
-    console.log(theme)
     useEffect(() => {
-        const themeSaved: string | null = window.localStorage.getItem("theme");
-        if(!themeSaved){
-            window.localStorage.setItem("theme", "themeOne");
-        }else{
-            themeDispatch({ type: "changeTheme", payload: themeSaved });
-            localStorage.setItem("theme", theme);
-        }
-
         if (palette) {
             animationIn(colorRef);
         } else {
