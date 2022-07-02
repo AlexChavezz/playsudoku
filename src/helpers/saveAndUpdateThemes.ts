@@ -7,7 +7,10 @@ export function getThemeFromLocalS() {
     return themeSaved;
 }
 export function validateTheme(theme: string): boolean {
-    let bool = false;
-    if (theme === "themeOne" || theme === "themeTwo" || theme === "themeThree" || theme === "themeFour" || theme === "themeFive") bool = true;
-    return bool;
+    let flag = false;
+    const posibleThemes = ["themeOne", "themeTwo", "themeThree", "themeFour", "themeFive"];
+    posibleThemes.forEach((posibleTheme) => {
+        if (posibleTheme == theme) flag = true
+    })
+    return flag;
 }
